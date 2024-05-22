@@ -109,7 +109,6 @@
     <!-- /#wrapper -->
     <!-- End head -->
 
-    @yield('content')
 
     <!-- Preloader -->
     <div id="overlayer"></div>
