@@ -30,15 +30,6 @@
 </head>
 
 <body>
-    
-    <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-            <div class="site-mobile-menu-close">
-                <span class="icofont-close js-menu-toggle"></span>
-            </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-    </div>
 
     <!-- Start head -->
     <nav class="site-nav">
@@ -59,7 +50,7 @@
                             <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu mx-auto">
                                 <li class="active"><a href="index.html">Home</a></li>
                                 <li class="has-children">
-                                    <a href="category.html">Pages</a>
+                                    <a href="category.html">somes</a>
                                     <ul class="dropdown">
                                         <li><a href="search-result.html">Search Result</a></li>
                                         <li><a href="blog.html">Blog</a></li>
@@ -81,18 +72,24 @@
                                 </li>
                                 <li><a href="category.html">Culture</a></li>
                                 <li><a href="category.html">Business</a></li>
-                                <li><a href="category.html">Politics</a></li>
+                                <li class="has-children">
+                                    <a href="category.html">Pages</a>
+                                    <ul class="dropdown">
+                                        <li><a href="{{ route('login') }}">Login</a></li>
+                                        <li><a href="{{ route('register') }}">Register</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
-                        <div class="col-2 text-end">
+                        <div class="col-2 text-end d-flex align-items-center justify-content-end">
                             <a href="#"
                                 class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light">
                                 <span></span>
                             </a>
-                            <form action="#" class="search-form d-none d-lg-inline-block">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="bi-search"></span>
-                            </form>
+                            @auth
+                                <span class="d-none d-lg-inline-block me-2 bg-light p-2 rounded text-dark fw-bold">👋 Hi,
+                                    {{ Auth::user()->username }}</span>
+                            @endauth
                         </div>
                     </div>
                 </div>

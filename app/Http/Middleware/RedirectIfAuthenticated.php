@@ -21,7 +21,9 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                // Ne rien faire, juste laisser passer la requête
+                // Vous pouvez également commenter ou supprimer cette ligne si vous ne voulez pas de redirection
+                // return redirect(RouteServiceProvider::HOME);
             }
         }
 
