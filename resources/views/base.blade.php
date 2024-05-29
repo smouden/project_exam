@@ -25,12 +25,13 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/flatpickr.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-DyZ88mC6Up2uqS+9ytwqeAI6xC/6RMl8fdrDY/MazibH6d5s3QCF3qVAXqMxts54" crossorigin="anonymous">
+
 
     <title>Shop smile</title>
 </head>
 
 <body>
-
     <!-- Start head -->
     <nav class="site-nav">
         <div class="container">
@@ -38,7 +39,7 @@
                 <div class="site-navigation">
                     <div class="row g-0 align-items-center">
                         <div class="col-2">
-                            <a href="index.html" class="logo m-0 float-start">Blogy<span
+                            <a href="/blogs" class="logo m-0 float-start">Blogy<span
                                     class="text-primary">.</span></a>
                         </div>
                         <div class="col-8 text-center">
@@ -48,32 +49,22 @@
                             </form>
 
                             <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu mx-auto">
-                                <li class="active"><a href="index.html">Home</a></li>
+                                <li><a href="{{ route('blogs.index') }}">Blogs</a></li>
                                 <li class="has-children">
-                                    <a href="category.html">somes</a>
+                                    <a href="#">Categories</a>
                                     <ul class="dropdown">
-                                        <li><a href="search-result.html">Search Result</a></li>
-                                        <li><a href="blog.html">Blog</a></li>
-                                        <li><a href="single.html">Blog Single</a></li>
-                                        <li><a href="category.html">Category</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="contact.html">Contact Us</a></li>
-                                        <li><a href="#">Menu One</a></li>
-                                        <li><a href="#">Menu Two</a></li>
-                                        <li class="has-children">
-                                            <a href="#">Dropdown</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Sub Menu One</a></li>
-                                                <li><a href="#">Sub Menu Two</a></li>
-                                                <li><a href="#">Sub Menu Three</a></li>
-                                            </ul>
-                                        </li>
+                                        @foreach($categories as $category)
+                                            <li><a
+                                                    href="{{ route('blogs.byCategory', $category->id) }}">{{ $category->name }}</a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </li>
-                                <li><a href="category.html">Culture</a></li>
-                                <li><a href="category.html">Business</a></li>
+
+
+                                <li><a href="{{ route('blogs.create') }}">Post</a></li>
                                 <li class="has-children">
-                                    <a href="category.html">Pages</a>
+                                    <a href="">Pages</a>
                                     <ul class="dropdown">
                                         <li><a href="{{ route('login') }}">Login</a></li>
                                         <li><a href="{{ route('register') }}">Register</a></li>
@@ -89,8 +80,15 @@
                             @auth
                                 <span class="d-none d-lg-inline-block me-2 bg-light p-2 rounded text-dark fw-bold">👋 Hi,
                                     {{ Auth::user()->username }}</span>
+                                <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn btn-link p-0 m-0 align-baseline"> exit
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </button>
+                                </form>
                             @endauth
                         </div>
+
                     </div>
                 </div>
             </div>
